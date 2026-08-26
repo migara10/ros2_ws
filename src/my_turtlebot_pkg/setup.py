@@ -2,7 +2,7 @@ import os
 from glob import glob
 from setuptools import find_packages, setup
 
-package_name = 'my_bot'
+package_name = 'my_turtlebot_pkg'
 
 setup(
     name=package_name,
@@ -12,15 +12,14 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-        (os.path.join('share', package_name, 'urdf'), glob('urdf/*')),
-        (os.path.join('share', package_name, 'launch'), glob('launch/*')),
+        (os.path.join('share', package_name, 'launch'), glob('launch/*.launch.py')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='migara',
-    maintainer_email='migaraten@gmail.com',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    maintainer='migar',
+    maintainer_email='migar@todo.todo',
+    description='My TurtleBot3 Gazebo Package',
+    license='Apache-2.0',
     extras_require={
         'test': [
             'pytest',
