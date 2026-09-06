@@ -46,6 +46,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'motor_driver_node = lidar_robot.motor_driver_node:main',
         ],
     },
 )

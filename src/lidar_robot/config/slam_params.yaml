@@ -9,12 +9,13 @@ slam_toolbox:
     ceres_loss_function: None
 
     # ROS Parameters
+    use_sim_time: false
     odom_frame: odom
     map_frame: map
     base_frame: base_link
     scan_topic: /scan
-    mode: mapping   # mapping or localization
-    
+    mode: mapping
+
     debug_logging: false
     throttle_scans: 1
     transform_publish_period: 0.02
@@ -43,12 +44,12 @@ slam_toolbox:
     loop_match_minimum_response_coarse: 0.35
     loop_match_minimum_response_fine: 0.45
 
-    # Correlation Parameters - Correlation Parameters
+    # Correlation Parameters
     correlation_search_space_dimension: 0.5
     correlation_search_space_resolution: 0.01
     correlation_search_space_smear_deviation: 0.1
 
-    # Correlation Parameters - Loop Closure Parameters
+    # Loop Closure Parameters
     loop_search_space_dimension: 8.0
     loop_search_space_resolution: 0.05
     loop_search_space_smear_deviation: 0.03
