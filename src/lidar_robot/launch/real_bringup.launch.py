@@ -25,7 +25,7 @@ def generate_launch_description():
         name='sllidar_node',
         output='screen',
         parameters=[{
-            'serial_port': '/dev/ttyUSB1',
+            'serial_port': '/dev/rplidar',
             'serial_baudrate': 115200,
             'frame_id': 'laser',
             'angle_compensate': True,
@@ -39,12 +39,14 @@ def generate_launch_description():
         name='motor_driver_node',
         output='screen',
         parameters=[{
-            'serial_port': '/dev/ttyUSB0',
+            'serial_port': '/dev/arduino',
             'baudrate': 115200,
             'wheel_separation': 0.05,
             'max_speed': 255,
-            'max_linear_vel': 0.3,
-            'min_pwm': 60,
+            'max_linear_vel': 4.0,
+            'min_pwm': 100,
+            'left_trim': 1.0,
+            'right_trim': 0.85,
         }]
     )
 

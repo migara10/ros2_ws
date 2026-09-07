@@ -9,7 +9,7 @@ from launch_ros.actions import Node
 def generate_launch_description():
     pkg_share = get_package_share_directory('lidar_robot')
 
-    default_map_path = os.path.join(pkg_share, 'maps', 'my_map.yaml')
+    default_map_path = os.path.join(pkg_share, 'maps', 'my_map_real.yaml')
     default_params_path = os.path.join(pkg_share, 'config', 'nav2_params.yaml')
 
     map_yaml_file = LaunchConfiguration('map')
@@ -26,7 +26,7 @@ def generate_launch_description():
         description='Full path to nav2 params yaml file'
     )
     declare_use_sim_time = DeclareLaunchArgument(
-        'use_sim_time', default_value='true',
+        'use_sim_time', default_value='false',
         description='Use simulation clock'
     )
     declare_autostart = DeclareLaunchArgument(
@@ -36,7 +36,6 @@ def generate_launch_description():
 
     remappings = [('/tf', 'tf'), ('/tf_static', 'tf_static')]
 
-    # ---------------- Localization ----------------
     map_server = Node(
         package='nav2_map_server',
         executable='map_server',
@@ -67,7 +66,6 @@ def generate_launch_description():
         }],
     )
 
-    # ---------------- Navigation ----------------
     controller_server = Node(
         package='nav2_controller',
         executable='controller_server',
@@ -118,7 +116,7 @@ def generate_launch_description():
         name='velocity_smoother',
         output='screen',
         parameters=[params_file, {'use_sim_time': use_sim_time}],
-        remappings=remappings + [('cmd_vel', 'cmd_vel')],
+        remappings=remappings,
     )
 
     lifecycle_manager_navigation = Node(
